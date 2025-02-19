@@ -1,6 +1,7 @@
 require './lib/vehicle'
 require './lib/passenger'
 require './lib/park'
+require 'pry'
 
 RSpec.configure do |config|
     config.formatter = :documentation
@@ -56,6 +57,19 @@ RSpec.describe Park do
         @park.passengers_enter_park(@emory)
 
         expect(@park.passengers).to eq([@charlie,@jude,@taylor,@samantha,@becky,@emory])
+    end
+    it 'can collect revenue' do
+        expect(@park.revenue).to eq(0)
 
+        @park.passengers_enter_park(@charlie)
+        @park.passengers_enter_park(@jude)
+        @park.passengers_enter_park(@taylor)
+        @park.passengers_enter_park(@samantha)
+        @park.passengers_enter_park(@becky)
+        @park.passengers_enter_park(@emory)
+
+        @park.collect_revenue
+
+        expect(@park.revenue).to eq(125)
     end
 end
