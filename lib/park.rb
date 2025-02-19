@@ -1,12 +1,14 @@
 require 'pry'
 class Park
-    attr_reader :name, :admission_price, :vehicles, :passengers, :revenue
+    attr_reader :name, :admission_price, :vehicles, :passengers, :revenue, :names_list
     def initialize(name,admission_price)
         @name = name
         @admission_price = admission_price
         @vehicles = []
         @passengers = []
         @revenue = 0
+        @names_list = []
+        
     end
 
     def vehicles_enter_park(vehicle)
@@ -28,4 +30,17 @@ class Park
             end
         end
     end
+    def list_names
+        people = @passengers.map do |passenger|
+            passenger
+        end
+        people.map do |attribute|
+            @names_list << attribute.name
+        end
+    end
+
+    def list_names_alphabetically
+        @names_list = @names_list.sort
+    end
+    
 end

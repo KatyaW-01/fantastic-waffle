@@ -72,4 +72,17 @@ RSpec.describe Park do
 
         expect(@park.revenue).to eq(125)
     end
+    it 'can list names alphabetically' do
+        @park.passengers_enter_park(@charlie)
+        @park.passengers_enter_park(@jude)
+        @park.passengers_enter_park(@taylor)
+        @park.passengers_enter_park(@samantha)
+        @park.passengers_enter_park(@becky)
+        @park.passengers_enter_park(@emory)
+
+        @park.list_names
+        @park.list_names_alphabetically
+
+        expect(@park.names_list).to eq(["Becky","Charlie","Emory","Jude","Samantha","Taylor"])
+    end
 end
