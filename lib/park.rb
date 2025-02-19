@@ -42,5 +42,30 @@ class Park
     def list_names_alphabetically
         @names_list = @names_list.sort
     end
+
+    def minors_list
+        minors_list = []
+        people = @passengers.find_all do |passenger|
+            passenger.age <18
+        end
+        people.map do |attribute|
+            minors_list << attribute.name
+        end
+        minors_list.sort
+    end
+
+    def adults_list
+        adults_list = []
+        people = @passengers.find_all do |passenger|
+            passenger.age >= 18
+        end
+        people.map do |attribute|
+            adults_list << attribute.name
+        end
+        adults_list.sort
+    end
+
     
+
+   
 end

@@ -42,7 +42,7 @@ RSpec.describe Park do
         @charlie = Passenger.new({"name" => "Charlie", "age" => 18})
         @jude = Passenger.new({"name" => "Jude", "age" => 20})
         @taylor = Passenger.new({"name" => "Taylor", "age" => 12})
-        @samantha = Passenger.new({"name" => "Samantha", "age" => 19})
+        @samantha = Passenger.new({"name" => "Samantha", "age" => 15})
         @becky = Passenger.new({"name" => "Becky", "age" => 53})
         @emory = Passenger.new({"name" => "Emory", "age" => 27})
     end
@@ -70,7 +70,19 @@ RSpec.describe Park do
 
         @park.collect_revenue
 
-        expect(@park.revenue).to eq(125)
+        expect(@park.revenue).to eq(100)
+    end
+    it 'can list names' do
+        @park.passengers_enter_park(@charlie)
+        @park.passengers_enter_park(@jude)
+        @park.passengers_enter_park(@taylor)
+        @park.passengers_enter_park(@samantha)
+        @park.passengers_enter_park(@becky)
+        @park.passengers_enter_park(@emory)
+
+        @park.list_names
+
+        expect(@park.names_list).to eq(["Charlie","Jude","Taylor","Samantha","Becky","Emory"])
     end
     it 'can list names alphabetically' do
         @park.passengers_enter_park(@charlie)
@@ -85,4 +97,33 @@ RSpec.describe Park do
 
         expect(@park.names_list).to eq(["Becky","Charlie","Emory","Jude","Samantha","Taylor"])
     end
+
+    it 'can list all the minors alphabetically' do
+        @park.passengers_enter_park(@charlie)
+        @park.passengers_enter_park(@jude)
+        @park.passengers_enter_park(@taylor)
+        @park.passengers_enter_park(@samantha)
+        @park.passengers_enter_park(@becky)
+        @park.passengers_enter_park(@emory)
+
+        @park.minors_list
+
+        expect(@park.minors_list).to eq(["Samantha","Taylor"])
+    end
+
+    it 'can list all the adults alophabetically' do
+        @park.passengers_enter_park(@charlie)
+        @park.passengers_enter_park(@jude)
+        @park.passengers_enter_park(@taylor)
+        @park.passengers_enter_park(@samantha)
+        @park.passengers_enter_park(@becky)
+        @park.passengers_enter_park(@emory)
+
+        @park.adults_list
+
+        expect(@park.adults_list).to eq(["Becky","Charlie","Emory","Jude"])
+    end
+
+   
+
 end
