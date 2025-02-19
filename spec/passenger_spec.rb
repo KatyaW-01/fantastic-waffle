@@ -27,4 +27,11 @@ RSpec.describe Passenger do
       expect(@charlie.adult?).to eq(true)
       expect(@taylor.adult?).to eq(false)
     end
+    it 'returns true/false if a driver' do
+      expect(@charlie.driver?).to eq(false)
+    end
+    it 'can become a driver' do
+      @charlie.drive
+      expect(@charlie.driver?).to eq(true)
+    end
 end
