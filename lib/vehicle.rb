@@ -21,11 +21,14 @@ class Vehicle
     end
 
     def num_adults
-        people = @passengers.map do |passenger|
-            passenger
-        end
-        people.count do |attribute|
-            attribute.age >= 18
+        # people = @passengers.map do |passenger|
+        #     passenger
+        # end
+        # people.count do |attribute|
+        #     attribute.age >= 18
+        # end
+        @passengers.count do |passenger|
+            passenger.adult?
         end
     end
 end

@@ -1,13 +1,13 @@
 require 'pry'
 class Park
-    attr_reader :name, :admission_price, :vehicles, :passengers, :revenue, :names_list
+    attr_reader :name, :admission_price, :vehicles, :passengers, :revenue
     def initialize(name,admission_price)
         @name = name
         @admission_price = admission_price
         @vehicles = []
         @passengers = []
         @revenue = 0
-        @names_list = []
+        
         
     end
 
@@ -20,27 +20,35 @@ class Park
     end
 
     def collect_revenue
-        admitants = @passengers.map do |passenger|
-            passenger
-        end
-        admitants.map do |attribute|
-            if attribute.age >= 18
-                @revenue +=25
+        # admitants = @passengers.map do |passenger|
+        #     passenger
+        # end
+        # admitants.map do |attribute|
+        #     if attribute.age >= 18
+        #         @revenue +=25
             
-            end
+        #     end
+        # end
+        @passengers.map do |passenger|
+            @revenue += admission_price if passenger.adult?
         end
     end
+
+
     def list_names
-        people = @passengers.map do |passenger|
-            passenger
-        end
-        people.map do |attribute|
-            @names_list << attribute.name
+        # people = @passengers.map do |passenger|
+        #     passenger
+        # end
+        # people.map do |attribute|
+        #     @names_list << attribute.name
+        # end
+        @passengers.map do |passenger|
+            passenger.name
         end
     end
 
     def list_names_alphabetically
-        @names_list = @names_list.sort
+        list_names.sort
     end
 
     def minors_list
