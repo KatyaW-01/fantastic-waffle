@@ -1,12 +1,10 @@
 require 'pry'
 class Park
-    attr_reader :name, :admission_price, :vehicles, :passengers, :revenue
+    attr_reader :name, :admission_price, :vehicles
     def initialize(name,admission_price)
         @name = name
         @admission_price = admission_price
         @vehicles = []
-        @passengers = []
-        @revenue = 0
         
         
     end
@@ -15,23 +13,23 @@ class Park
         @vehicles << vehicle
     end
 
-    def passengers_enter_park(passenger)
-        @passengers << passenger
+    def passengers_enter_park #this method is returning an array of passengers
+       passengers = @vehicles.map do |vehicle|
+        vehicle.passengers 
+       end
+       passengers.flatten
     end
 
     def collect_revenue
-        # admitants = @passengers.map do |passenger|
-        #     passenger
-        # end
-        # admitants.map do |attribute|
-        #     if attribute.age >= 18
-        #         @revenue +=25
-            
-        #     end
-        # end
-        @passengers.map do |passenger|
-            @revenue += admission_price if passenger.adult?
+        revenue = 0
+        @vehicles.each do |vehicle|
+            vehicle.passengers.each do |passenger|
+                if passenger.adult?
+                    revenue += @admission_price
+                end
+            end
         end
+        revenue
     end
 
 

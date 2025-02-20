@@ -28,6 +28,7 @@ RSpec.describe Vehicle do
             expect(@vehicle.speeding?).to eq(false)
         end
         it 'can return true if vehicle speeds' do
+            expect(@vehicle.speeding?).to eq(false)
             @vehicle.speed
             expect(@vehicle.speeding?).to eq(true)
         end
@@ -35,11 +36,11 @@ RSpec.describe Vehicle do
             expect(@vehicle.passengers).to eq([])
         end
 
-        before(:each) do
-            @charlie = Passenger.new({"name" => "Charlie", "age" => 18})
-            @jude = Passenger.new({"name" => "Jude", "age" => 20})
-            @taylor = Passenger.new({"name" => "Taylor", "age" => 12})
-        end
+    before(:each) do
+        @charlie = Passenger.new({"name" => "Charlie", "age" => 18})
+        @jude = Passenger.new({"name" => "Jude", "age" => 20})
+        @taylor = Passenger.new({"name" => "Taylor", "age" => 12})
+    end
 
         it 'can add passengers to a vehicle' do
             @vehicle.add_passenger(@charlie)
